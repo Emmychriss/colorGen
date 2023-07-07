@@ -1,8 +1,12 @@
 import { useState } from "react";
 
-const Form = () => {
+const Form = ({ addColor }) => {
   const [color, setColor] = useState("");
-  const handleSubmit = (e) => {};
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    addColor(color);
+  };
 
   return (
     <section className="container">
@@ -11,11 +15,9 @@ const Form = () => {
       <form action="" className="color-form" onSubmit={handleSubmit}>
         <input
           type="color"
-          value={color}
           onChange={(e) => {
             setColor(e.target.value);
           }}
-          placeholder="#f1f15025"
         />
 
         <input
@@ -26,8 +28,7 @@ const Form = () => {
           }}
           placeholder="#f1f15025"
         />
-
-        <button className="btn" type="button" style={{ background: color }}>
+        <button className="btn" type="submit" style={{ background: color }}>
           Submit
         </button>
       </form>
